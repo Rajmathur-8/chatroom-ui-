@@ -16,13 +16,14 @@ export const ChatPage2 = () => {
   const [privateChats, setPrivateChats] = useState(new Map());
 
   useEffect(() => {
-     if (username === null) {
+    console.log('Username:', username);
+    if (!username || username.trim().length === 0) {
+      console.log('Redirecting to login...');
       history.push("/login");
     } else {
       connect();
     }
   }, [username, history]);
-
 
   const onMessageReceived = (payload) => {
     const payloadData = JSON.parse(payload.body);
@@ -242,46 +243,33 @@ export const ChatPage2 = () => {
                     return (
                       <div className="d-flex justify-content-start" key={index}>
                         <div
-                          className="d-flex p-2"
+                          className="d-flex p-2 flex-column"
                           style={{
                             borderTopRightRadius: "5px",
                             borderBottomRightRadius: "5px",
                             borderTopLeftRadius: "5px",
                             backgroundColor: "white",
+                            maxWidth: "500px",
                           }}
                         >
-                          <div className="rounded-3 px-2 me-2 align-self-start">
-                            <div className="bg-warning">
-                              {message.senderName}
-                            </div>
-                            <div>
-                              <div>{message.message}</div>
-                              <div>
-                                {message.media
-                                  .split(";")[0]
-                                  .split("/")[0]
-                                  .split(":")[1] === "image" && (
-                                  <img
-                                    src={message.media}
-                                    alt=""
-                                    width={"250px"}
-                                  />
-                                )}
-                              </div>{" "}
-                              <div>
-                                {message.media
-                                  .split(";")[0]
-                                  .split("/")[0]
-                                  .split(":")[1] === "video" && (
-                                  <video width="320" height="240" controls>
-                                    <source
-                                      src={message.media}
-                                      type="video/mp4"
-                                    />
-                                  </video>
-                                )}
-                              </div>
-                            </div>
+                          <div className="">{message.message}</div>
+                          <div>
+                            {message.media
+                              .split(";")[0]
+                              .split("/")[0]
+                              .split(":")[1] === "image" && (
+                              <img src={message.media} alt="" width={"250px"} />
+                            )}
+                          </div>
+                          <div>
+                            {message.media
+                              .split(";")[0]
+                              .split("/")[0]
+                              .split(":")[1] === "video" && (
+                              <video width="320" height="240" controls>
+                                <source src={message.media} type="video/mp4" />
+                              </video>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -295,6 +283,7 @@ export const ChatPage2 = () => {
                             borderTopRightRadius: "5px",
                             borderTopLeftRadius: "5px",
                             borderBottomLeftRadius: "5px",
+                            maxWidth: "500px",
                           }}
                         >
                           <div className="text-white">{message.message}</div>
