@@ -1,0 +1,27 @@
+button {
+  border: none;
+  position: relative;
+  width: 200px;
+  height: 73px;
+  padding: 0;
+  z-index: 2;
+  cursor: pointer;
+  background-color: #06fa3f;
+  color: white;
+  font-size: 15px;
+  font-weight: 100;
+  letter-spacing: 3px;
+  text-align: center;
+  line-height: 75px; /* Center text vertically */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #04c531;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #039127;
+  transform: translateY(1px);
+}
