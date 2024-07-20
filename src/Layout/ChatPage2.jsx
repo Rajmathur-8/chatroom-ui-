@@ -16,12 +16,7 @@ export const ChatPage2 = () => {
   const [privateChats, setPrivateChats] = useState(new Map());
 
   useEffect(() => {
-    // Redirect to login page if username is not set
-    if (!username || username.trim().length === 0) {
       history.push("/login");
-    } else {
-      connect();
-    }
   }, [username, history]);
 
   const onMessageReceived = (payload) => {
