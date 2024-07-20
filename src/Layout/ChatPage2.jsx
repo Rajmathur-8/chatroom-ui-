@@ -98,10 +98,11 @@ export const ChatPage2 = () => {
   };
 
   const connect = () => {
-    let sock = new SockJS("http://localhost:8080/ws");
-    stompClient = over(sock);
-    stompClient.connect({}, onConnect, onError);
-  };
+  let sock = new SockJS("https://chatroom-backend-lsne.onrender.com/ws"); // Updated URL
+  stompClient = over(sock);
+  stompClient.connect({}, onConnect, onError);
+};
+
 
   useEffect(() => {
     connect();
