@@ -1,31 +1,25 @@
+import React from "react";
 import {
-  Redirect,
-  Route,
   BrowserRouter as Router,
+  Route,
   Switch,
-  useHistory,
+  Redirect,
 } from "react-router-dom";
 import { Login } from "./Layout/Login";
 import { ChatPage2 } from "./Layout/ChatPage2";
+
 function App() {
-  const history = useHistory();
-
-  if (localStorage.getItem("chat-username")) {
-    history.push("/chat");
-  } else history.push("/login");
-
   return (
     <Router>
       <Switch>
-        <Route exact path={"/"}>
-          <Redirect to={"/login"}></Redirect>
+        <Route exact path="/">
+          {localStorage.getItem("chat-username") ? <Redirect to="/chat" /> : <Redirect to="/login" />}
         </Route>
-        <Route path={"/login"}>
-          <Login></Login>
+        <Route path="/login">
+          <Login />
         </Route>
-
-        <Route path={"/chat"}>
-          <ChatPage2></ChatPage2>
+        <Route path="/chat">
+          {localStorage.getItem("chat-username") ? <ChatPage2 /> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </Router>
@@ -33,3 +27,4 @@ function App() {
 }
 
 export default App;
+
