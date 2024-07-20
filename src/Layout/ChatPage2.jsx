@@ -16,8 +16,13 @@ export const ChatPage2 = () => {
   const [privateChats, setPrivateChats] = useState(new Map());
 
   useEffect(() => {
+     if (username === null) {
       history.push("/login");
+    } else {
+      connect();
+    }
   }, [username, history]);
+
 
   const onMessageReceived = (payload) => {
     const payloadData = JSON.parse(payload.body);
